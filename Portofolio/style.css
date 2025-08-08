@@ -1,0 +1,141 @@
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+header {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    list-style: none;
+}
+
+ul * {
+    text-decoration: none;
+}
+
+ul a {
+    color: black;
+    font-weight: 600;
+}
+
+ul a:hover{
+    border: solid 2px white;
+    font-size: 1.2em;
+    padding: 5px 20px;
+    border-radius: 6px;
+    color: white;
+    background-color: lightskyblue;
+    transition:0.3s ease-in-out;
+}
+
+.unline {
+    text-decoration: underline solid blue 5px;
+}
+
+#Home {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#Home p {
+    font-size: 5em;
+    font-weight: bold;
+    margin: 0;
+}
+
+#Home img {
+    width: 500px;
+    border-radius: 50%;
+    margin-top: 20px;
+    border: solid 4px black;
+}
+
+#Home img:hover {
+    border: skyblue 15px solid;
+    transition: 0.3s ease-in;
+}
+
+#About {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 50px;
+    height: 100vh;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+#About h2 {
+    color: blueviolet;
+}
+
+#Skill {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#Skill div {
+    text-align: center;
+    width: 300px;
+    border: solid black 2px;
+    height: 400px;
+    border-radius: 5px;
+}
+
+#Work {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.certi{
+    background-color: black;
+    border: solid 3px goldenrod;
+    color: white;
+    text-align: center;
+    width: 400px;
+    height: 200px;
+    border-radius: 5px;
+    padding: 0 20px;
+}
+
+.certi h2 {
+    color: goldenrod;
+}
+
+.certi :nth-child(2) {
+    color: gold;
+    font-size: 1.3em;
+}
+
+.certi :nth-child(3) {
+ color: gold;
+}
+
+#Contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 3em;
+}
