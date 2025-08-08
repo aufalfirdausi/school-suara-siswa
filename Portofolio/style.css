@@ -36,7 +36,7 @@ ul a:hover{
     border-radius: 6px;
     color: white;
     background-color: lightskyblue;
-    transition:0.3s ease-in-out;
+       transition:0.3s ease-in-out;
 }
 
 .unline {
@@ -138,4 +138,38 @@ ul a:hover{
     justify-content: center;
     height: 100vh;
     font-size: 3em;
+}
+
+
+@media only screen and (max-width: 600px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+
+    }
+    #Home p {
+    font-size: 2em;
+    }
+
+    #Home img {
+        width: 70%;
+    }
+
+    #About p {
+        font-size: 0.8em;
+    }
+
+    #Skill {
+        flex-direction: column;
+
+    }
+
+    #Skill div {
+        height: auto;
+    }
+
+    #Work {
+        flex-direction: column;
+    }
+
 }
