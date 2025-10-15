@@ -1,44 +1,63 @@
-<?php
 
+<?php
 session_start();
-include ('../config/connection.php');
+include('../config/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $email = mysqli_real_escape_string($conn, $_POST['email']);
-  $password = $_POST['password'];
+  $password = mysqli_real_escape_string($conn, $_POST['password']);
+  $role = mysqli_real_escape_string($conn, $_POST['role']);
+  $otorization = isset($_POST['otorization']) ? mysqli_real_escape_string($conn, $_POST['otorization']) : '';
 
-  //cek di table students
-  $query_student = mysqli_query($conn, "SELECT * FROM students WHERE email='$email'");
-
-  //cek di table admins
-  $query_admin = mysqli_query($conn, "SELECT * FROM admins WHERE email='$email'");
-
-  if(mysqli_num_rows($query_student) > 0) {
-    $user = mysqli_fetch_assoc($query_student);
-    if(password_verify($password, $user['password'])) {
-      $_SESSION['user_id'] = $user['id_student'];
-      $_SESSION['role'] = 'student';
-      header("Location: ../students/dashboard.php");
-      exit;
+  if ($role == 'student') {
+    // Login student
+    $query = mysqli_query($conn, "SELECT * FROM students WHERE email='$email'");
+    if (mysqli_num_rows($query) > 0) {
+      $student = mysqli_fetch_assoc($query);
+      if (password_verify($password, $student['password'])) {
+        $_SESSION['user_id'] = $student['id_student'];
+        $_SESSION['role'] = 'student';
+        header("Location: ../students/dashboard.php");
+        exit;
+      } else {
+        echo "<script>alert('Password salah!');</script>";
+      }
     } else {
-      echo "password mu salah";
+      echo "<script>alert('Email tidak ditemukan sebagai student!');</script>";
     }
-  } elseif(mysqli_num_rows($query_admin) > 0) {
-    $admin = mysqli_fetch_assoc($query_admin);
-    if (password_verify($password, $admin['password'])) {
-     $_SESSION['user_id'] = $admin['id_admin'];
-     $_SESSION['role'] = $admin['role'];
-     header("Location: ../admins/dashboard.php");
-     exit;
-  } else {
-    echo "password mu salah";
-  }
-} else {
-  echo "user tidak ditemukan"; 
-} 
-}
 
+  } elseif ($role == 'admin') {
+    // Login admin
+    $query = mysqli_query($conn, "SELECT * FROM admins WHERE email='$email'");
+    if (mysqli_num_rows($query) > 0) {
+      $admin = mysqli_fetch_assoc($query);
+
+      // Verifikasi password dulu
+      if (password_verify($password, $admin['password'])) {
+
+        // Lalu cek kode otorisasi
+        if ($otorization === "SEKOLAHMAJU") {
+          $_SESSION['user_id'] = $admin['id_admin'];
+          $_SESSION['role'] = 'admin';
+          header("Location: ../admin/dashboard.php");
+          exit;
+        } else {
+          echo "<script>alert('Kode otorisasi salah! Hubungi administrator utama.');</script>";
+        }
+
+      } else {
+        echo "<script>alert('Password salah!');</script>";
+      }
+    } else {
+      echo "<script>alert('Email tidak ditemukan sebagai admin!');</script>";
+    }
+
+  } else {
+    echo "<script>alert('Pilih role terlebih dahulu!');</script>";
+  }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,10 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <label for="">Passrord</label>
       <input type="password" name="password" placeholder="password" required /><br />
       <label class="label">Role: </label>
-        <input type="radio" name="Role" value="admin" />admin
-        <input type="radio" name="Role" value="student " />student<br />
+        <input type="radio" name="role" value="admin" />admin
+        <input type="radio" name="role" value="student" />student<br />
         <label for="">Otorization</label>
-      <input type="password" name="otorization" placeholder="opsional" required/><br />
+      <input type="password" name="otorization" placeholder="opsional"/><br />
       <button type="submit">Login</button>
     </form>
   </body>

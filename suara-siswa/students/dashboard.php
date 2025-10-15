@@ -12,7 +12,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'student') {
 $id_student = $_SESSION['user_id'];
 
 //ngambil data aspirasi punya siswa yg login
-$query = mysqli_query($conn, "SELECT * FROM aspiration WHERE id_student = '$id_student' ORDER BY date_submitted DESC");
+$query = mysqli_query($conn, "SELECT * FROM aspirations WHERE id_student = '$id_student' ORDER BY date_submitted DESC");
 
 
 ?>
