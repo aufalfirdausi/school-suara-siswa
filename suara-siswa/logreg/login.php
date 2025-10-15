@@ -4,7 +4,7 @@ session_start();
 include ('../config/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $email = mysql_real_escape_string($conn, $_POST['email']);
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
   $password = $_POST['password'];
 
   //cek di table students
@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   //cek di table admins
   $query_admin = mysqli_query($conn, "SELECT * FROM admins WHERE email='$email'");
-
 
   if(mysqli_num_rows($query_student) > 0) {
     $user = mysqli_fetch_assoc($query_student);
@@ -52,9 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form action="" method="post">
       <h2>Login</h2>
       <label for="">Email</label>
-      <input type="email" name="email" required /><br />
+      <input type="email" name="email" placeholder="email" required /><br />
       <label for="">Passrord</label>
-      <input type="password" name="password" required /><br />
+      <input type="password" name="password" placeholder="password" required /><br />
+      <label class="label">Role: </label>
+        <input type="radio" name="Role" value="admin" />admin
+        <input type="radio" name="Role" value="student " />student<br />
+        <label for="">Otorization</label>
+      <input type="password" name="otorization" placeholder="opsional" required/><br />
       <button type="submit">Login</button>
     </form>
   </body>
