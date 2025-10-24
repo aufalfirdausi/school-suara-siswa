@@ -22,22 +22,23 @@ $query = mysqli_query($conn, "SELECT * FROM aspirations WHERE id_student = '$id_
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Dashboard Murid</title>
   </head>
   <body>
     <h2>WELCOME, STUDENT!</h2>
+
     <a href="../logreg/logout.php">Logout</a><br />
     <a href="../students/buat-aspirasi.php">Buat Aspirasi Baru</a><br />
 
-    <table>
+    <table border="1" cellpadding="8" cellspacing="0">
       <tr>
         <th>No</th>
         <th>Title</th>
         <th>Content</th>
-        <th>Status</th>
         <th>Response</th>
         <th>Date</th>
         <th>Action</th>
+        <th>Status</th>
       </tr>
 
       <?php
@@ -48,11 +49,11 @@ $query = mysqli_query($conn, "SELECT * FROM aspirations WHERE id_student = '$id_
                 <td>{$no}</td>
                 <td>{$row['title']}</td>
                 <td>{$row['content']}</td>
-                <td>{$row['status']}</td>
                 <td>" . ($row['response'] ?: '-') . " </td>
                 <td>{$row['date_submitted']}</td>
-                <td><a href='hapus_aspirasi.php?id={$row['id_aspiration']}'>Delete</a></td>
-             </tr>";
+                <td><a href='hapus-aspirasi.php?id={$row['id_aspiration']}'>Delete</a></td>
+                <td>{$row['status']}</td>
+                </tr>";
              $no++;
         }
       } else {

@@ -69,6 +69,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       <input type="radio" name="role" value="student" /> Student <br />
 
       <button type="submit">Kirim</button>
+
     </form>
+    <button><a href="login.php">login</a></button>
   </body>
 </html>

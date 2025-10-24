@@ -80,5 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <input type="password" name="otorization" placeholder="opsional"/><br />
       <button type="submit">Login</button>
     </form>
+    <button><a href="register.php">regis</a></button>
   </body>
 </html>
