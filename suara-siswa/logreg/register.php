@@ -64,9 +64,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       <label for="">Password</label>
       <input type="password" name="password" required /><br />
 
-      <label class="label">Role:</label>
+      <!-- <label class="label">Role:</label>
       <input type="radio" name="role" value="admin" /> Admin
-      <input type="radio" name="role" value="student" /> Student <br />
+      <input type="radio" name="role" value="student" /> Student <br /> -->
 
       <button type="submit">Kirim</button>
 
